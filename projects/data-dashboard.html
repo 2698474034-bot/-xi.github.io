@@ -1,0 +1,588 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>掌纹终端管理云平台</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>:root{--bg-primary:#000;--bg-secondary:#000;--text-primary:#ececf1;--text-secondary:#90909e;--accent:#22d3ee;--accent-light:#67e8f9;--border:#252536;--radius-full:9999px;--nav-h:42px;--base:#fff;--pill-bg:#000;--pill-text:#fff;--transition-base:0.25s ease}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;background:#000}body{background:#000;display:flex;flex-direction:column;min-height:100dvh;font-family:Inter,sans-serif;color:var(--text-primary)}.tech-grid{position:fixed;inset:0;z-index:-10;background-image:linear-gradient(rgba(34,211,238,0.03)1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,0.03)1px,transparent 1px);background-size:60px 60px;animation:gridMove 20s linear infinite}@keyframes gridMove{0%{transform:translate(0,0)}100%{transform:translate(60px,60px)}}.glow-orb{position:fixed;border-radius:50%;filter:blur(80px);opacity:0.15;z-index:-8;animation:orbFloat 15s ease-in-out infinite}.glow-orb-1{width:400px;height:400px;background:#22d3ee;top:20%;left:10%}.glow-orb-2{width:300px;height:300px;background:#0891b2;top:60%;right:10%;animation-delay:-5s}.glow-orb-3{width:250px;height:250px;background:#2dd4bf;bottom:10%;left:40%;animation-delay:-10s}@keyframes orbFloat{0%,100%{transform:translate(0,0)}33%{transform:translate(30px,-30px)}66%{transform:translate(-20px,20px)}}.header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,10,15,0.8);backdrop-filter:blur(20px);border-bottom:1px solid transparent}.header.scrolled{background:rgba(10,10,15,0.95);border-bottom-color:var(--border)}.nav-container{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;height:64px;align-items:center;justify-content:center;position:relative}.nav-left{position:absolute;left:24px;top:50%;transform:translateY(-50%);display:flex;align-items:center}.nav-right{position:absolute;right:24px;top:50%;transform:translateY(-50%);display:flex;align-items:center}.nav-avatar{width:32px;height:32px;border-radius:50%}/* ───── Fitness Jumbotron (卡通清新) ───── */.fitness-jumbo{position:relative;width:100%;background:linear-gradient(135deg,#d4f5e2 0%,#b8e8d0 30%,#a8e6cf 55%,#7dd3c0 80%,#5cb8a0 100%);overflow:hidden;padding:0;margin-top:64px;z-index:50;min-height:700px;display:flex;align-items:center;opacity:0;transform:translateY(-20px);animation:jumboDrop 1s cubic-bezier(0.22,1,0.36,1) forwards}.fitness-jumbo .jumbo-inner{max-width:1200px;margin:0 auto;padding:100px 24px;width:100%;position:relative;z-index:4;display:flex;align-items:center;justify-content:space-between;gap:40px}.fitness-jumbo .jumbo-left{flex:1;max-width:600px}.fitness-jumbo .jumbo-eyebrow{font-size:13px;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:inline-flex;align-items:center;gap:6px;position:relative;opacity:0;animation:jumboFadeIn 0.6s 0.3s ease forwards;background:rgba(255,255,255,0.5);padding:6px 16px 6px 12px;border-radius:9999px;backdrop-filter:blur(4px)}.fitness-jumbo .jumbo-headline{font-size:clamp(28px,5vw,48px);font-weight:800;color:#064e3b;line-height:1.15;letter-spacing:-1px;margin-bottom:16px;opacity:0;animation:jumboFadeIn 0.6s 0.5s ease forwards}.fitness-jumbo .jumbo-headline .highlight{color:#059669;background:linear-gradient(135deg,#059669,#10b981);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.fitness-jumbo .jumbo-desc{font-size:15px;color:#065f46;line-height:1.7;margin-bottom:24px;max-width:480px;opacity:0;animation:jumboFadeIn 0.6s 0.7s ease forwards}.fitness-jumbo .jumbo-cta{display:inline-flex;align-items:center;gap:10px;padding:12px 32px;border-radius:9999px;font-size:15px;font-weight:700;color:#fff;background:linear-gradient(135deg,#059669,#10b981);border:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;opacity:0;animation:jumboFadeIn 0.6s 0.9s ease forwards;text-decoration:none;box-shadow:0 4px 16px rgba(5,150,105,0.25)}.fitness-jumbo .jumbo-cta:hover{transform:scale(1.05) translateY(-2px);box-shadow:0 8px 30px rgba(5,150,105,0.35)}.fitness-jumbo .jumbo-cta svg{width:18px;height:18px;transition:transform 0.2s}.fitness-jumbo .jumbo-cta:hover svg{transform:translateX(4px)}.fitness-jumbo .jumbo-back-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;padding:4px 12px;font-size:13px;font-weight:600;color:#047857;text-decoration:none;opacity:0;border-radius:9999px;animation:jumboFadeIn 0.6s 1.1s ease forwards;transition:all 0.25s ease}.fitness-jumbo .jumbo-back-link:hover{background:rgba(255,255,255,0.55);backdrop-filter:blur(4px);transform:translateX(-4px);color:#065f46}.fitness-jumbo .jumbo-right{flex-shrink:0;opacity:0;animation:jumboFadeIn 0.6s 0.8s ease forwards}.fitness-jumbo .jumbo-card{width:240px;border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 8px 40px rgba(0,0,0,0.08);position:relative;transform:rotate(1.5deg);transition:transform 0.3s}.fitness-jumbo .jumbo-card:hover{transform:rotate(0deg) scale(1.02)}.fitness-jumbo .jumbo-card img{width:100%;height:auto;display:block;border:0}.fitness-jumbo .jumbo-card .card-tape{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:40px;height:12px;background:rgba(255,255,255,0.7);border-radius:2px;backdrop-filter:blur(2px)}.fitness-jumbo .jumbo-deco{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}.fitness-jumbo .jumbo-deco svg{position:absolute;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.02))}.fitness-jumbo .fb-dumbbell{width:80px;height:80px;bottom:30px;left:6%;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round;opacity:0;animation:bounceIn 0.6s 0.6s ease forwards}.fitness-jumbo .fb-runner{width:55px;height:70px;top:40px;right:10%;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:0;animation:bounceIn 0.6s 0.8s ease forwards}.fitness-jumbo .fb-heart{width:160px;height:30px;bottom:20px;right:6%;stroke:#fff;stroke-width:2.5;fill:none;stroke-linecap:round;opacity:0;animation:heartPulse 3s ease-in-out infinite,bounceIn 0.6s 1s ease forwards}.fitness-jumbo .fb-drop{width:110px;height:110px;top:-20px;left:3%;stroke:none;fill:#fff;opacity:0;animation:floatDrift 8s ease-in-out infinite,bounceIn 0.6s 0.5s ease forwards}.fitness-jumbo .fb-bubble{position:absolute;border-radius:50%;background:rgba(255,255,255,0.2);opacity:0}.fitness-jumbo .fb-bubble-1{width:14px;height:14px;top:15%;left:20%;animation:bubbleFloat 5s ease-in-out infinite,bounceIn 0.6s 0.7s ease forwards}.fitness-jumbo .fb-bubble-2{width:10px;height:10px;top:25%;left:28%;animation:bubbleFloat 6s ease-in-out 0.5s infinite,bounceIn 0.6s 0.9s ease forwards}.fitness-jumbo .fb-bubble-3{width:18px;height:18px;bottom:30%;right:25%;animation:bubbleFloat 5.5s ease-in-out 1s infinite,bounceIn 0.6s 1.1s ease forwards}.fitness-jumbo .fb-star{position:absolute;color:rgba(255,255,255,0.2);font-size:16px;opacity:0}.fitness-jumbo .fb-star-1{top:18%;right:18%;animation:twinkle 2s ease-in-out infinite,bounceIn 0.6s 0.8s ease forwards}.fitness-jumbo .fb-star-2{bottom:25%;left:10%;animation:twinkle 2.5s ease-in-out 0.5s infinite,bounceIn 0.6s 1s ease forwards}@keyframes jumboDrop{0%{opacity:0;transform:translateY(-20px)}100%{opacity:1;transform:translateY(0)}}@keyframes jumboFadeIn{0%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:translateY(0)}}@keyframes bounceIn{0%{opacity:0;transform:scale(0.5) translateY(20px)}60%{opacity:0.6;transform:scale(1.1) translateY(-4px)}100%{opacity:0.5;transform:scale(1) translateY(0)}}@keyframes heartPulse{0%,100%{opacity:0.08}50%{opacity:0.2}}@keyframes floatDrift{0%,100%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(10px,8px) rotate(3deg)}50%{transform:translate(-5px,-5px) rotate(-2deg)}75%{transform:translate(8px,-3px) rotate(4deg)}}@keyframes bubbleFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-15px) scale(1.15)}}@keyframes twinkle{0%,100%{opacity:0.08}50%{opacity:0.35}}/* ───── Image card (polaroid style) ───── */.fitness-jumbo .jumbo-card{width:240px;border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 8px 40px rgba(0,0,0,0.08);position:relative;transform:rotate(1.5deg);transition:transform 0.3s}.fitness-jumbo .jumbo-card:hover{transform:rotate(0deg) scale(1.02)}.fitness-jumbo .jumbo-card img{width:100%;height:auto;display:block;border:0}.fitness-jumbo .jumbo-card .card-tape{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:40px;height:12px;background:rgba(255,255,255,0.7);border-radius:2px;backdrop-filter:blur(2px)}/* ───── Cartoon decorations ───── */.fitness-jumbo .jumbo-deco{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}.fitness-jumbo .jumbo-deco svg{position:absolute;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.02))}.fitness-jumbo .fb-dumbbell{width:80px;height:80px;bottom:30px;left:6%;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round;opacity:0;animation:bounceIn 0.6s 0.6s ease forwards}.fitness-jumbo .fb-runner{width:55px;height:70px;top:40px;right:10%;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:0;animation:bounceIn 0.6s 0.8s ease forwards}.fitness-jumbo .fb-heart{width:160px;height:30px;bottom:20px;right:6%;stroke:#fff;stroke-width:2.5;fill:none;stroke-linecap:round;opacity:0}.fitness-jumbo .fb-heart{animation:heartPulse 3s ease-in-out infinite,bounceIn 0.6s 1s ease forwards}.fitness-jumbo .fb-drop{width:110px;height:110px;top:-20px;left:3%;stroke:none;fill:#fff;opacity:0;animation:floatDrift 8s ease-in-out infinite,bounceIn 0.6s 0.5s ease forwards}.fitness-jumbo .fb-bubble{position:absolute;border-radius:50%;background:rgba(255,255,255,0.2);opacity:0}.fitness-jumbo .fb-bubble-1{width:14px;height:14px;top:15%;left:20%;animation:bubbleFloat 5s ease-in-out infinite,bounceIn 0.6s 0.7s ease forwards}.fitness-jumbo .fb-bubble-2{width:10px;height:10px;top:25%;left:28%;animation:bubbleFloat 6s ease-in-out 0.5s infinite,bounceIn 0.6s 0.9s ease forwards}.fitness-jumbo .fb-bubble-3{width:18px;height:18px;bottom:30%;right:25%;animation:bubbleFloat 5.5s ease-in-out 1s infinite,bounceIn 0.6s 1.1s ease forwards}.fitness-jumbo .fb-star{position:absolute;color:rgba(255,255,255,0.15);font-size:16px;opacity:0}.fitness-jumbo .fb-star-1{top:18%;right:18%;animation:twinkle 2s ease-in-out infinite,bounceIn 0.6s 0.8s ease forwards}.fitness-jumbo .fb-star-2{bottom:25%;left:10%;animation:twinkle 2.5s ease-in-out 0.5s infinite,bounceIn 0.6s 1s ease forwards}
+
+/* ───── Fitness Jumbotron ───── */.fitness-jumbo{position:relative;width:100%;background:#07071a;overflow:hidden;padding:0;margin-top:64px;z-index:50;min-height:700px;display:flex;align-items:center;opacity:0;transform:translateY(-20px);animation:jumboDrop 1s cubic-bezier(0.22,1,0.36,1) forwards}.fitness-jumbo .jumbo-inner{max-width:1200px;margin:0 auto;padding:100px 24px;width:100%;position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:40px}.fitness-jumbo .jumbo-left{flex:1;max-width:600px}.fitness-jumbo .jumbo-eyebrow{font-size:13px;font-weight:600;color:#38bdf8;text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:inline-block;position:relative;opacity:0;animation:jumboFadeIn 0.6s 0.3s ease forwards}.fitness-jumbo .jumbo-eyebrow::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:2px;background:#38bdf8;animation:lineGrow 0.8s 0.6s ease forwards}.fitness-jumbo .jumbo-headline{font-size:clamp(28px,5vw,48px);font-weight:800;color:#fff;line-height:1.15;letter-spacing:-1px;margin-bottom:16px;opacity:0;animation:jumboFadeIn 0.6s 0.5s ease forwards}.fitness-jumbo .jumbo-headline .highlight{color:#38bdf8;background:linear-gradient(135deg,#38bdf8,#0ea5e9);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.fitness-jumbo .jumbo-desc{font-size:15px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:24px;max-width:480px;opacity:0;animation:jumboFadeIn 0.6s 0.7s ease forwards}.fitness-jumbo .jumbo-cta{display:inline-flex;align-items:center;gap:10px;padding:12px 32px;border-radius:9999px;font-size:15px;font-weight:600;color:#fff;background:linear-gradient(135deg,#0ea5e9,#0284c7);border:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;opacity:0;animation:jumboFadeIn 0.6s 0.9s ease forwards;text-decoration:none}.fitness-jumbo .jumbo-cta:hover{transform:scale(1.05);box-shadow:0 8px 30px rgba(56,189,248,0.3)}.fitness-jumbo .jumbo-cta svg{width:18px;height:18px;transition:transform 0.2s}.fitness-jumbo .jumbo-cta:hover svg{transform:translateX(4px)}.fitness-jumbo .jumbo-back-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;padding:4px 12px;font-size:13px;font-weight:600;color:#38bdf8;text-decoration:none;opacity:0;border-radius:9999px;animation:jumboFadeIn 0.6s 1.1s ease forwards;transition:all 0.25s ease}.fitness-jumbo .jumbo-back-link:hover{background:rgba(255,255,255,0.08);backdrop-filter:blur(4px);transform:translateX(-4px);color:#7dd3fc}.fitness-jumbo .jumbo-right{flex-shrink:0;opacity:0;animation:jumboFadeIn 0.6s 0.8s ease forwards}.fitness-jumbo .lightfall-bg{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:inherit}.fitness-jumbo .jumbo-illustration{width:180px;height:180px;border-radius:24px;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;border:1px solid rgba(255,255,255,0.08);position:relative}.fitness-jumbo .jumbo-illustration .ring-anim{position:absolute;inset:-6px;border-radius:28px;border:1.5px solid rgba(56,189,248,0.15);animation:ringPulse 3s ease-in-out infinite}.fitness-jumbo .jumbo-illustration .stat-number{font-size:36px;font-weight:800;color:#38bdf8;line-height:1}.fitness-jumbo .jumbo-illustration .stat-label{font-size:12px;color:rgba(255,255,255,0.5);font-weight:500}.fitness-jumbo .jumbo-illustration svg{width:32px;height:32px;stroke:#38bdf8}.fitness-jumbo .jumbo-illustration .stat-divider{width:32px;height:1.5px;background:linear-gradient(90deg,transparent,rgba(56,189,248,0.5),transparent);margin:4px 0}@keyframes jumboDrop{0%{opacity:0;transform:translateY(-20px)}100%{opacity:1;transform:translateY(0)}}@keyframes jumboFadeIn{0%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:translateY(0)}}@keyframes lineGrow{0%{width:0}100%{width:100%}}@keyframes ringPulse{0%,100%{opacity:0.15;transform:scale(1)}50%{opacity:0.4;transform:scale(1.06)}}.logo-text{font-size:20px;font-weight:700;color:var(--text-primary)}.pill-logo{display:flex;align-items:center;gap:8px;cursor:pointer}.pill-logo:hover{opacity:0.8}.pill-list{list-style:none;display:flex;align-items:center;gap:3px;margin:0;padding:3px;height:42px;background:#fff;border-radius:9999px}.pill-list>li{display:flex;height:100%}.pill{display:inline-flex;align-items:center;justify-content:center;height:100%;padding:0 18px;background:#000;color:#fff;text-decoration:none;border-radius:9999px;border:none;font-weight:600;font-size:16px;line-height:1;white-space:nowrap;cursor:pointer;font-family:Inter,sans-serif;transition:background-color 0.15s,color 0.15s}.pill .label-stack{position:relative;display:inline-block;line-height:1;z-index:2;overflow:hidden;height:1em}.pill .pill-label{position:relative;z-index:2;display:block;line-height:1}.pill.is-active{background:#fff!important;color:#000!important}.pill:active{transform:scale(0.95)}.nav-contact-btn{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.8);text-decoration:none;transition:all var(--transition-base);position:relative}.nav-contact-btn:hover{color:#fff;transform:scale(1.1);border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.1)}.nav-contact-btn::after{content:attr(data-tooltip);position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);padding:6px 12px;background:rgba(255,255,255,0.9);color:#111;font-size:13px;white-space:nowrap;border-radius:8px;pointer-events:none;opacity:0;transition:opacity 0.2s}.nav-contact-btn:hover::after{opacity:1}
+.prep-gallery{display:flex;gap:16px;margin-top:24px;flex-wrap:nowrap;justify-content:center}@media(max-width:900px){.prep-gallery{flex-wrap:wrap}}.prep-gallery img{width:280px;height:200px;border-radius:8px;border:1px solid var(--border);object-fit:contain;display:block;background:rgba(255,255,255,0.02)}@media(max-width:900px){.prep-gallery img{width:100%;height:auto}}
+.project-prep .prep-gallery{display:flex;flex-direction:column;align-items:center;gap:32px;margin-top:32px}
+.project-prep .prep-gallery img{width:100%;max-width:1200px;height:auto;object-fit:contain;border:none;border-radius:12px;box-shadow:none}
+.project-prep{padding:0 0 80px;background:var(--bg-primary)}.project-prep-inner{max-width:1200px;margin:0 auto;padding:0 24px}.project-prep-divider{width:100%;height:1px;background:linear-gradient(90deg,var(--border),rgba(34,211,238,0.15),var(--border));margin-bottom:60px}.prep-header{margin-bottom:48px}.prep-title{font-size:clamp(28px,3.5vw,40px);font-weight:700;color:var(--text-primary);line-height:1.15;letter-spacing:-0.3px;margin-bottom:8px}.prep-slogan{font-size:16px;color:var(--accent);font-weight:500;letter-spacing:0.5px}.prep-steps{display:flex;flex-direction:column;gap:24px}.prep-step{display:flex;gap:20px;padding:24px 28px;border:1px solid var(--border);border-radius:8px;transition:border-color 0.25s,background 0.25s}.prep-step:hover{border-color:rgba(34,211,238,0.25);background:rgba(34,211,238,0.015)}.prep-step-number{flex-shrink:0;width:36px;height:36px;border-radius:8px;background:rgba(34,211,238,0.08);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--accent)}.prep-step-body{flex:1;min-width:0}.prep-step-name{font-size:15px;font-weight:600;color:var(--text-primary);margin-bottom:6px}.prep-step-desc{font-size:14px;color:var(--text-secondary);line-height:1.7}
+.project-detail{background:var(--bg-primary);padding:80px 0 60px}.project-detail-inner{max-width:1200px;margin:0 auto;padding:0 24px}.project-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px}.project-title-group{display:flex;flex-direction:column;gap:6px}.project-name{font-size:clamp(32px,4vw,48px);font-weight:700;color:var(--text-primary);line-height:1.1;letter-spacing:-0.5px}.project-subtitle{font-size:15px;color:var(--text-secondary);font-weight:400;letter-spacing:0.3px}.project-year{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-weight:600;color:var(--accent);background:rgba(34,211,238,0.04);flex-shrink:0;margin-top:4px}.project-divider{width:100%;height:1px;background:linear-gradient(90deg,var(--border),rgba(34,211,238,0.15),var(--border));margin-bottom:48px}.project-content{display:grid;grid-template-columns:1fr 1fr;gap:48px 64px}@media(max-width:768px){.project-content{grid-template-columns:1fr;gap:40px}}.project-section-label{font-size:13px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;display:flex;align-items:center;gap:8px}.project-section-label::before{content:"";width:20px;height:2px;background:var(--accent);border-radius:1px;flex-shrink:0}.project-overview .project-text{font-size:15px;color:var(--text-secondary);line-height:1.8;margin-bottom:16px}.project-overview .project-text:last-child{margin-bottom:0}.project-role .role-card{padding:24px;border:1px solid var(--border);border-radius:8px;background:rgba(255,255,255,0.015)}.project-role .role-card .role-icon{width:32px;height:32px;border-radius:8px;background:rgba(34,211,238,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:14px}.project-role .role-card .role-icon svg{width:16px;height:16px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.project-role .role-card .role-label{font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:8px;letter-spacing:0.5px}.project-role .role-card .role-text{font-size:14px;color:var(--text-secondary);line-height:1.7}.footer{margin-top:48px;background:var(--bg-secondary);color:var(--text-primary);padding:48px 0 32px;border-top:1px solid var(--border)}.footer-container{max-width:1200px;margin:0 auto;padding:0 24px}.footer-main{display:flex;align-items:center;justify-content:space-between;gap:24px}.footer-logo{font-size:18px;font-weight:700;color:var(--text-primary)}.footer-tagline{font-size:13px;color:var(--text-secondary)}.footer-actions{display:flex;flex-direction:column;align-items:flex-start;gap:8px}.footer-contact-item{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary);text-decoration:none}.footer-contact-item:hover{color:var(--accent-light)}.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.85);color:#fff;padding:16px 32px;border-radius:12px;z-index:9999;pointer-events:none;opacity:0;transition:opacity 0.3s;display:inline-flex;align-items:center;gap:12px}.toast.show{opacity:1}.lanyard-overlay{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.7);backdrop-filter:blur(12px);display:none;cursor:pointer;opacity:0;transform:translateY(-40px);transition:opacity 0.35s ease,transform 0.35s ease}.lanyard-overlay.visible{opacity:1;transform:translateY(0)}.lanyard-overlay .lanyard-close{position:absolute;top:24px;right:24px;width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.25);background:transparent;color:rgba(255,255,255,0.7);font-size:22px;line-height:40px;text-align:center;cursor:pointer;z-index:2}.lanyard-overlay .lanyard-close:hover{background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.4)}.lanyard-overlay .lanyard-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.35);font-size:14px;pointer-events:none;z-index:2}@media(max-width:1024px){.footer-main{flex-direction:column;text-align:center}.footer-actions{align-items:center}}.prep-gallery-caption{font-size:13px;color:var(--text-secondary);text-align:center;margin-top:8px;letter-spacing:0.5px}
+/* ───── Image spring-up animation ───── */
+.prep-gallery img {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: opacity, transform;
+}
+.prep-gallery img.spring-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+  <div class="tech-grid"></div>
+  <div class="glow-orb glow-orb-1"></div>
+  <div class="glow-orb glow-orb-2"></div>
+  <div class="glow-orb glow-orb-3"></div>
+  <header class="header" id="header"><nav class="nav-container"><div class="nav-left"><div class="pill-logo" onclick="showLanyard(event)"><svg class="nav-avatar" viewBox="0 0 48 40"><rect x="8" y="0" width="4" height="4" fill="#FFB74D"/><rect x="12" y="0" width="4" height="4" fill="#FFB74D"/><rect x="28" y="0" width="4" height="4" fill="#FFB74D"/><rect x="32" y="0" width="4" height="4" fill="#FFB74D"/><rect x="4" y="4" width="4" height="4" fill="#FFB74D"/><rect x="8" y="4" width="4" height="4" fill="#FF8A65"/><rect x="12" y="4" width="4" height="4" fill="#FFB74D"/><rect x="28" y="4" width="4" height="4" fill="#FFB74D"/><rect x="32" y="4" width="4" height="4" fill="#FF8A65"/><rect x="36" y="4" width="4" height="4" fill="#FFB74D"/><rect x="0" y="8" width="4" height="4" fill="#FFB74D"/><rect x="4" y="8" width="4" height="4" fill="#FFB74D"/><rect x="8" y="8" width="4" height="4" fill="#FFB74D"/><rect x="12" y="8" width="4" height="4" fill="#FFB74D"/><rect x="16" y="8" width="4" height="4" fill="#FFB74D"/><rect x="20" y="8" width="4" height="4" fill="#FFB74D"/><rect x="24" y="8" width="4" height="4" fill="#FFB74D"/><rect x="28" y="8" width="4" height="4" fill="#FFB74D"/><rect x="32" y="8" width="4" height="4" fill="#FFB74D"/><rect x="36" y="8" width="4" height="4" fill="#FFB74D"/><rect x="40" y="8" width="4" height="4" fill="#FFB74D"/><rect x="44" y="8" width="4" height="4" fill="#FFB74D"/><rect x="0" y="12" width="4" height="4" fill="#FFB74D"/><rect x="4" y="12" width="4" height="4" fill="#FFB74D"/><rect x="8" y="12" width="4" height="4" fill="#FFB74D"/><rect x="12" y="12" width="4" height="4" fill="#FFB74D"/><rect x="16" y="12" width="4" height="4" fill="#FFB74D"/><rect x="20" y="12" width="4" height="4" fill="#FFB74D"/><rect x="24" y="12" width="4" height="4" fill="#FFB74D"/><rect x="28" y="12" width="4" height="4" fill="#FFB74D"/><rect x="32" y="12" width="4" height="4" fill="#FFB74D"/><rect x="36" y="12" width="4" height="4" fill="#FFB74D"/><rect x="40" y="12" width="4" height="4" fill="#FFB74D"/><rect x="44" y="12" width="4" height="4" fill="#FFB74D"/><rect x="0" y="16" width="4" height="4" fill="#FFB74D"/><rect x="4" y="16" width="4" height="4" fill="#FFB74D"/><rect x="8" y="16" width="4" height="4" fill="#3E2723"/><rect x="12" y="16" width="4" height="4" fill="#FFF"/><rect x="16" y="16" width="4" height="4" fill="#FFB74D"/><rect x="20" y="16" width="4" height="4" fill="#FFB74D"/><rect x="24" y="16" width="4" height="4" fill="#FFB74D"/><rect x="28" y="16" width="4" height="4" fill="#3E2723"/><rect x="32" y="16" width="4" height="4" fill="#FFF"/><rect x="36" y="16" width="4" height="4" fill="#FFB74D"/><rect x="40" y="16" width="4" height="4" fill="#FFB74D"/><rect x="44" y="16" width="4" height="4" fill="#FFB74D"/><rect x="0" y="20" width="4" height="4" fill="#FFB74D"/><rect x="4" y="20" width="4" height="4" fill="#FFB74D"/><rect x="8" y="20" width="4" height="4" fill="#FFB74D"/><rect x="12" y="20" width="4" height="4" fill="#FFB74D"/><rect x="16" y="20" width="4" height="4" fill="#FFB74D"/><rect x="20" y="20" width="4" height="4" fill="#FFB74D"/><rect x="24" y="20" width="4" height="4" fill="#FFB74D"/><rect x="28" y="20" width="4" height="4" fill="#FFB74D"/><rect x="32" y="20" width="4" height="4" fill="#FFB74D"/><rect x="36" y="20" width="4" height="4" fill="#FFB74D"/><rect x="40" y="20" width="4" height="4" fill="#FFB74D"/><rect x="44" y="20" width="4" height="4" fill="#FFB74D"/><rect x="0" y="24" width="4" height="4" fill="#FFB74D"/><rect x="4" y="24" width="4" height="4" fill="#FFB74D"/><rect x="8" y="24" width="4" height="4" fill="#FFB74D"/><rect x="12" y="24" width="4" height="4" fill="#FFB74D"/><rect x="16" y="24" width="4" height="4" fill="#FF7043"/><rect x="20" y="24" width="4" height="4" fill="#FFB74D"/><rect x="24" y="24" width="4" height="4" fill="#FF7043"/><rect x="28" y="24" width="4" height="4" fill="#FFB74D"/><rect x="32" y="24" width="4" height="4" fill="#FFB74D"/><rect x="36" y="24" width="4" height="4" fill="#FFB74D"/><rect x="40" y="24" width="4" height="4" fill="#FFB74D"/><rect x="44" y="24" width="4" height="4" fill="#FFB74D"/><rect x="0" y="28" width="4" height="4" fill="#FFB74D"/><rect x="4" y="28" width="4" height="4" fill="#FFB74D"/><rect x="8" y="28" width="4" height="4" fill="#FFB74D"/><rect x="12" y="28" width="4" height="4" fill="#FFB74D"/><rect x="16" y="28" width="4" height="4" fill="#FFB74D"/><rect x="20" y="28" width="4" height="4" fill="#FFB74D"/><rect x="24" y="28" width="4" height="4" fill="#FFB74D"/><rect x="28" y="28" width="4" height="4" fill="#FFB74D"/><rect x="32" y="28" width="4" height="4" fill="#FFB74D"/><rect x="36" y="28" width="4" height="4" fill="#FFB74D"/><rect x="40" y="28" width="4" height="4" fill="#FFB74D"/><rect x="44" y="28" width="4" height="4" fill="#FFB74D"/><rect x="4" y="32" width="4" height="4" fill="#FFB74D"/><rect x="8" y="32" width="4" height="4" fill="#FFB74D"/><rect x="32" y="32" width="4" height="4" fill="#FFB74D"/><rect x="36" y="32" width="4" height="4" fill="#FFB74D"/><rect x="40" y="32" width="4" height="4" fill="#FFB74D"/><rect x="8" y="36" width="4" height="4" fill="#FFB74D"/><rect x="12" y="36" width="4" height="4" fill="#FFB74D"/><rect x="16" y="36" width="4" height="4" fill="#FFB74D"/><rect x="20" y="36" width="4" height="4" fill="#FFB74D"/><rect x="24" y="36" width="4" height="4" fill="#FFB74D"/><rect x="28" y="36" width="4" height="4" fill="#FFB74D"/><rect x="32" y="36" width="4" height="4" fill="#FFB74D"/><rect x="36" y="36" width="4" height="4" fill="#FFB74D"/></svg><span class="logo-text">邱xi</span></div></div><ul class="pill-list" id="pillNavList"><li><button class="pill" data-section="home" onclick="scrollToSection('home')"><span class="hover-circle"></span><span class="label-stack"><span class="pill-label">首页</span><span class="pill-label-hover">首页</span></span></button></li><li><button class="pill is-active" data-section="projects" onclick="scrollToSection('projects')"><span class="hover-circle"></span><span class="label-stack"><span class="pill-label">项目</span><span class="pill-label-hover">项目</span></span></button></li><li><button class="pill" data-section="about" onclick="scrollToSection('about')"><span class="hover-circle"></span><span class="label-stack"><span class="pill-label">关于我</span><span class="pill-label-hover">关于我</span></span></button></li></ul><div class="nav-right"><a href="mailto:2698474034@qq.com" class="nav-contact-btn" data-tooltip="个人简历"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></a></div></nav></header>
+  <section class="fitness-jumbo"><div class="lightfall-bg"></div><div class="jumbo-inner"><div class="jumbo-left"><span class="jumbo-eyebrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> 掌脉终端管理云平台</span><h2 class="jumbo-headline"><span class="highlight">终端</span>智控 · <span class="highlight">数据</span>可视</h2><p class="jumbo-desc">实时监控终端状态 · 远程配置与批量管理 · 数据安全合规，助力企业数字化运维</p><a href="../index.html#projects" class="jumbo-back-link">← 返回项目列表</a></div><div class="jumbo-right"><div class="jumbo-card"><img src="D:/Browerdown/87e48408-66b5-41e8-b6a4-112bf207a086.jpg" alt="掌脉终端管理数据看板"></div></div></div></section>
+  <section class="project-detail"><div class="project-detail-inner"><div class="project-header"><div class="project-title-group"><h1 class="project-name">掌纹终端管理云平台</h1><span class="project-subtitle">实习项目</span></div><div class="project-year"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>2026</div></div><div class="project-divider"></div><div class="project-content"><div class="project-overview"><div class="project-section-label">概述</div><p class="project-text">掌脉终端管理云平台是一款基于AI掌纹识别技术的智能考勤管理系统。平台以非接触式掌纹识别为核心，采用深度学习算法提取掌纹特征值，实现毫秒级身份认证，识别准确率高达99.9%。系统涵盖考勤管理、人员信息管理、设备终端管控等核心模块，支持多终端数据实时同步。云平台提供可视化数据看板，可自动生成考勤报表，支持异常考勤智能预警。</p><p class="project-text">系统部署灵活，支持公有云及私有云部署，适用于企业、学校、园区等多种场景，有效解决传统考勤方式存在的代打卡、效率低等问题，助力管理数字化转型。</p></div><div class="project-role"><div class="project-section-label">我的角色</div><div class="role-card"><div class="role-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M3 21v-2a6 6 0 0 1 6-6h6a6 6 0 0 1 6 6v2"/></svg></div><div class="role-label">产品经理助理</div><div class="role-text">设计页面功能逻辑，设计原型，协调团队工作</div></div></div></div></section>
+  <section class="project-prep"><div class="project-prep-inner"><div class="project-prep-divider"></div><div class="prep-header"><h2 class="prep-title">小程序</h2><p class="prep-slogan">掌纹、远程和管理</p></div><div class="prep-steps"><div class="prep-step"><div class="prep-step-body"><div class="prep-step-name">项目背景需求</div><div class="prep-step-desc">云平台是一个由掌脉终端、云服务器、手机APP、微信小程序等组成的掌脉应用系统</div></div></div><div class="prep-gallery"><img src="images/项目背景需求.png" alt="项目背景需求"></div><div class="prep-step"><div class="prep-step-body"><div class="prep-step-name">整体信息架构</div><div class="prep-step-desc">掌脉终端、pc后台与小程序</div></div></div><div class="prep-gallery"><img src="images/整体信息架构.png" alt="整体信息架构"></div><div class="prep-step"><div class="prep-step-body"><div class="prep-step-name">用户注册认证数据流程</div><div class="prep-step-desc">通过信息流转步骤，抽象功能逻辑</div></div></div>
+    <div class="prep-gallery">
+      <img src="images/用户注册认证数据流程.png" alt="用户注册认证数据流程">
+    </div>
+    <div class="prep-step"><div class="prep-step-body"><div class="prep-step-name">原型设计</div><div class="prep-step-desc">页面跳转、页面结构与交互注释</div></div></div>
+    <div class="prep-gallery" style="flex-direction:row;flex-wrap:wrap;gap:12px;">
+      <img src="images/原型设计-01.png" alt="原型设计" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/原型设计-02.png" alt="原型设计" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/原型设计-03.png" alt="原型设计" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/原型设计-04.png" alt="原型设计" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/原型设计-05.png" alt="原型设计" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/原型设计-06.png" alt="原型设计" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/原型设计-07.png" alt="原型设计" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/原型设计-08.png" alt="原型设计" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+    </div>
+
+    </div></div></section>
+  <section class="project-prep"><div class="project-prep-inner"><div class="project-prep-divider"></div><div class="prep-header"><h2 class="prep-title">pc管理后台</h2><p class="prep-slogan">交互、原型与管理</p></div><div class="prep-steps"><div class="prep-step"><div class="prep-step-body"><div class="prep-step-name">访客管理</div><div class="prep-step-desc">原型与流程逻辑</div></div></div>
+    <div class="prep-gallery" style="flex-direction:row;flex-wrap:wrap;gap:12px;">
+      <img src="images/访客管理-01.png" alt="访客管理" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/访客管理-02.png" alt="访客管理" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+    </div>
+    <div class="prep-step"><div class="prep-step-body"><div class="prep-step-name">门禁人员记录</div><div class="prep-step-desc">原型设计</div></div></div>
+    <div class="prep-gallery" style="flex-direction:row;flex-wrap:wrap;gap:12px;">
+      <img src="images/门禁人员记录-01.png" alt="门禁人员记录" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/门禁人员记录-02.png" alt="门禁人员记录" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+    </div>
+    <div class="prep-step"><div class="prep-step-body"><div class="prep-step-name">考勤模块</div><div class="prep-step-desc">考勤组管理、班次管理与加班规则</div></div></div>
+    <div class="prep-gallery" style="flex-direction:row;flex-wrap:wrap;gap:12px;">
+      <img src="images/考勤模块-01.png" alt="考勤模块" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/考勤模块-02.png" alt="考勤模块" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/考勤模块-03.png" alt="考勤模块" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/考勤模块-04.png" alt="考勤模块" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/考勤模块-05.png" alt="考勤模块" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/考勤模块-06.png" alt="考勤模块" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/考勤模块-07.png" alt="考勤模块" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+    </div>
+    <div class="prep-step"><div class="prep-step-body"><div class="prep-step-name">系统用户管理</div><div class="prep-step-desc">账号管理、角色管理与操作日志</div></div></div>
+    <div class="prep-gallery" style="flex-direction:row;flex-wrap:wrap;gap:12px;">
+      <img src="images/系统用户管理-01.png" alt="系统用户管理" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/系统用户管理-02.png" alt="系统用户管理" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/系统用户管理-03.png" alt="系统用户管理" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+    </div>
+    <div class="prep-step"><div class="prep-step-body"><div class="prep-step-name">其他页面</div><div class="prep-step-desc">登录、日志与管理</div></div></div>
+    <div class="prep-gallery" style="flex-direction:row;flex-wrap:wrap;gap:12px;">
+      <img src="images/其他页面-01.png" alt="其他页面" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/其他页面-02.png" alt="其他页面" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/其他页面-03.png" alt="其他页面" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/其他页面-04.png" alt="其他页面" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+      <img src="images/其他页面-05.png" alt="其他页面" style="width:auto;height:280px;object-fit:contain;border-radius:8px;border:1px solid var(--border)">
+    </div>
+
+    </div></div></section>
+  <div style="display:flex;justify-content:center;padding:0 24px;margin-top:60px">
+      <a href="掌脉终端管理云平台.zip" download style="display:inline-flex;flex-direction:column;align-items:center;gap:6px;padding:16px 40px;border-radius:12px;font-size:15px;font-weight:600;color:#fff;background:linear-gradient(135deg,#0ea5e9,#22d3ee);border:none;cursor:pointer;text-decoration:none;box-shadow:0 4px 16px rgba(34,211,238,0.25)">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+        项目rp文件.zip
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </a>
+    </div>
+    <footer class="footer"><div class="footer-container"><div class="footer-main"><div class="footer-brand"><span class="footer-logo">邱xi</span><span class="footer-tagline">创造有意义的数字产品体验</span></div><div class="footer-actions"><a href="tel:18739153694" class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>18739153694</a><a href="mailto:2698474034@qq.com" class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>2698474034@qq.com</a></div></div></div></footer>
+  <div id="toast" class="toast"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M5 11L3 5L8 8Z" fill="#FFB347"/><path d="M17 11L19 5L14 8Z" fill="#FFB347"/><rect x="3" y="8" width="16" height="12" rx="3" fill="#FFB347"/><rect x="7" y="10" width="3" height="3" fill="#333" rx="0.5"/><rect x="12" y="10" width="3" height="3" fill="#333" rx="0.5"/><polygon points="11,12 10,14 12,14" fill="#FF6B6B"/><path d="M8 15Q11 17 14 15" stroke="#333" stroke-width="0.8" fill="none"/><line x1="2" y1="12" x2="7" y2="13" stroke="#333" stroke-width="0.6"/><line x1="2" y1="14" x2="7" y2="13.5" stroke="#333" stroke-width="0.6"/><line x1="20" y1="12" x2="15" y2="13" stroke="#333" stroke-width="0.6"/><line x1="20" y1="14" x2="15" y2="13.5" stroke="#333" stroke-width="0.6"/></svg>复制成功</div>
+  <div class="lanyard-overlay" id="lanyardOverlay"><button class="lanyard-close" id="lanyardClose">&times;</button><div id="lanyardContainer"></div><div class="lanyard-hint">拖拽名片</div></div>
+<div class="lanyard-overlay" id="lanyardOverlay"><button class="lanyard-close" id="lanyardClose">&times;</button><div id="lanyardContainer" style="width:100vw;height:100vh;position:relative;z-index:1;cursor:grab"></div><div class="lanyard-hint">拖拽名片</div></div>
+<script>
+function scrollToSection(id) { var target = document.getElementById(id); if (target) { target.scrollIntoView({behavior:'smooth',block:'start'}); setTimeout(function(){ window.location.href='../index.html#'+id; },400); } else { window.location.href='../index.html#'+id; } }
+
+// ===== Lanyard 名片（SVG 版，同首页效果） =====
+(function() {
+  var overlay, container, card, band, clip;
+  var cardX = 0, cardY = 0, cardVX = 0, cardVY = 0;
+  var rotY = 0, rotVY = 0, targetRotY = 0;
+  var dragStartX = 0, dragStartRotY = 0;
+  var targetX = 0, targetY = 0;
+  var isDragging = false;
+  var cardW = 280, cardH = 400;
+  var bandTop = 0;
+  window.showLanyard = function(e) {
+    if (e) e.stopPropagation();
+    overlay = document.getElementById("lanyardOverlay");
+    container = document.getElementById("lanyardContainer");
+    if (!overlay || !container) return;
+    overlay.style.display = "block";
+    overlay.offsetHeight;
+    overlay.classList.add("visible");
+    if (!card) initScene(); else { var h3 = window.innerHeight; targetY = h3 / 2 - cardH / 2 - bandTop; cardY = targetY - 350; cardVX = 0; cardVY = 0; targetX = 0; }
+  };
+  window.hideLanyard = function() {
+    if (!overlay) return;
+    overlay.classList.remove("visible");
+    setTimeout(function() { overlay.style.display = "none"; }, 350);
+  };
+  function initScene() {
+    bandTop = 20;
+    container.innerHTML = "";
+    // ---- SVG: band & clip ----
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", "100%");
+    svg.setAttribute("height", "100%");
+    svg.style.position = "absolute";
+    svg.style.top = "0";
+    svg.style.left = "0";
+    svg.style.pointerEvents = "none";
+    svg.style.zIndex = "1";
+    container.appendChild(svg);
+            // ---- Lanyard strap (white woven fabric) ----
+    band = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    band.setAttribute("d", "");
+    band.setAttribute("fill", "none");
+    band.setAttribute("stroke", "#d0d0d0");
+    band.setAttribute("stroke-width", "18");
+    band.setAttribute("stroke-linecap", "round");
+    band.style.filter = "drop-shadow(0 1px 3px rgba(0,0,0,0.25))";
+    svg.appendChild(band);
+    var bandMid = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    bandMid.setAttribute("d", "");
+    bandMid.setAttribute("fill", "none");
+    bandMid.setAttribute("stroke", "#e0e0e0");
+    bandMid.setAttribute("stroke-width", "14");
+    bandMid.setAttribute("stroke-linecap", "round");
+    svg.appendChild(bandMid);
+    var bandHL = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    bandHL.setAttribute("d", "");
+    bandHL.setAttribute("fill", "none");
+    bandHL.setAttribute("stroke", "#ececec");
+    bandHL.setAttribute("stroke-width", "8");
+    bandHL.setAttribute("stroke-linecap", "round");
+    svg.appendChild(bandHL);
+    var bandCore = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    bandCore.setAttribute("d", "");
+    bandCore.setAttribute("fill", "none");
+    bandCore.setAttribute("stroke", "#f5f5f5");
+    bandCore.setAttribute("stroke-width", "3");
+    bandCore.setAttribute("stroke-linecap", "round");
+    svg.appendChild(bandCore);
+    // Woven repeating pattern (staggered dashes = fabric weave)
+    var weave1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    weave1.setAttribute("d", "");
+    weave1.setAttribute("fill", "none");
+    weave1.setAttribute("stroke", "#c5c5c5");
+    weave1.setAttribute("stroke-width", "2");
+    weave1.setAttribute("stroke-linecap", "round");
+    weave1.setAttribute("stroke-dasharray", "6 10");
+    weave1.setAttribute("stroke-dashoffset", "0");
+    svg.appendChild(weave1);
+    var weave2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    weave2.setAttribute("d", "");
+    weave2.setAttribute("fill", "none");
+    weave2.setAttribute("stroke", "#b8b8b8");
+    weave2.setAttribute("stroke-width", "2");
+    weave2.setAttribute("stroke-linecap", "round");
+    weave2.setAttribute("stroke-dasharray", "6 10");
+    weave2.setAttribute("stroke-dashoffset", "8");
+    svg.appendChild(weave2);
+    var weave3 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    weave3.setAttribute("d", "");
+    weave3.setAttribute("fill", "none");
+    weave3.setAttribute("stroke", "#d5d5d5");
+    weave3.setAttribute("stroke-width", "1.5");
+    weave3.setAttribute("stroke-linecap", "round");
+    weave3.setAttribute("stroke-dasharray", "3 13");
+    weave3.setAttribute("stroke-dashoffset", "4");
+    svg.appendChild(weave3);
+    var weave4 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    weave4.setAttribute("d", "");
+    weave4.setAttribute("fill", "none");
+    weave4.setAttribute("stroke", "#ccc");
+    weave4.setAttribute("stroke-width", "1");
+    weave4.setAttribute("stroke-linecap", "round");
+    weave4.setAttribute("stroke-dasharray", "2 6");
+    weave4.setAttribute("stroke-dashoffset", "2");
+    svg.appendChild(weave4);
+    window._bandEls = [band, bandMid, bandHL, bandCore, weave1, weave2, weave3, weave4];
+    // ---- Card ----
+    card = document.createElement("div");
+    card.style.position = "absolute";
+    card.style.width = cardW + "px";
+    card.style.height = cardH + "px";
+    card.style.perspective = "1200px";
+    card.style.cursor = "grab";
+    card.style.zIndex = "2";
+    card.style.transform = "translate(-50%, 0)";
+    card.style.userSelect = "none";
+    var cardInner = document.createElement("div");
+    cardInner.style.width = "100%";
+    cardInner.style.height = "100%";
+    cardInner.style.transformStyle = "preserve-3d";
+    cardInner.style.position = "relative";
+    cardInner.style.borderRadius = "16px";
+    cardInner.style.boxShadow = "0 12px 60px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.3)";
+    var front = document.createElement("div");
+    front.style.position = "absolute";
+    front.style.width = "100%";
+    front.style.height = "100%";
+    front.style.backfaceVisibility = "hidden";
+    front.style.borderRadius = "16px";
+    front.style.overflow = "hidden";
+    var back = document.createElement("div");
+    back.style.position = "absolute";
+    back.style.width = "100%";
+    back.style.height = "100%";
+    back.style.backfaceVisibility = "hidden";
+    back.style.borderRadius = "16px";
+    back.style.transform = "rotateY(180deg)";
+    back.style.overflow = "hidden";
+    // ---- Front canvas texture ----
+    var cv = document.createElement("canvas");
+    cv.width = 560;
+    cv.height = 750;
+    var ctx = cv.getContext("2d");
+    ctx.fillStyle = "#1a1a1a";
+    ctx.beginPath();
+    var r2 = 24;
+    ctx.moveTo(r2,0); ctx.lineTo(560-r2,0);
+    ctx.quadraticCurveTo(560,0,560,r2);
+    ctx.lineTo(560,750-r2);
+    ctx.quadraticCurveTo(560,750,560-r2,750);
+    ctx.lineTo(r2,750);
+    ctx.quadraticCurveTo(0,750,0,750-r2);
+    ctx.lineTo(0,r2);
+    ctx.quadraticCurveTo(0,0,r2,0);
+    ctx.fill();
+    ctx.strokeStyle = "rgba(255,255,255,0.03)";
+    ctx.lineWidth = 1;
+    for (var gi=0; gi<560; gi+=20) {
+      ctx.beginPath(); ctx.moveTo(gi,0); ctx.lineTo(gi,750); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0,gi); ctx.lineTo(560,gi); ctx.stroke();
+    }
+    ctx.fillStyle = "rgba(255,255,255,0.04)";
+    for (var si=-750; si<560; si+=40) {
+      ctx.beginPath();
+      ctx.moveTo(si, 0);
+      ctx.lineTo(si+20, 0);
+      ctx.lineTo(si+20+750, 750);
+      ctx.lineTo(si+750, 750);
+      ctx.closePath();
+      ctx.fill();
+    }
+    var catX = 220, catY = 180, pxSize = 15;
+    var catData = [
+      [0,0,1,1,0,0,0,1,1,0,0,0],
+      [0,1,2,1,0,0,0,1,2,1,0,0],
+      [1,1,1,1,1,1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1,1,1,1,1,1],
+      [1,1,3,4,1,1,1,3,4,1,1,1],
+      [1,1,1,1,1,1,1,1,1,1,1,1],
+      [1,1,1,1,5,1,5,1,1,1,1,1],
+      [1,1,1,1,1,1,1,1,1,1,1,1],
+      [0,1,1,0,0,0,0,0,1,1,1,0],
+      [0,0,1,1,1,1,1,1,1,1,0,0],
+    ];
+    var catColors = {1:"#f5f5f5", 2:"#ccc", 3:"#111", 4:"#fff", 5:"#666"};
+    catData.forEach(function(row, ri) {
+      row.forEach(function(v, ci) {
+        if (v > 0) {
+          ctx.fillStyle = catColors[v];
+          ctx.fillRect(catX + ci*pxSize, catY + ri*pxSize, pxSize-1, pxSize-1);
+        }
+      });
+    });
+    var glowGrad = ctx.createRadialGradient(280, 250, 10, 280, 250, 140);
+    glowGrad.addColorStop(0, "rgba(255,255,255,0.08)");
+    glowGrad.addColorStop(1, "rgba(255,255,255,0)");
+    ctx.fillStyle = glowGrad;
+    ctx.beginPath();
+    ctx.arc(280, 250, 140, 0, Math.PI*2);
+    ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 48px Inter, sans-serif";
+    ctx.textAlign = "center";
+    ctx.shadowColor = "rgba(255,255,255,0.2)";
+    ctx.shadowBlur = 20;
+    ctx.fillText("邱xi", 280, 420);
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = "rgba(255,255,255,0.4)";
+    ctx.font = "300 16px Inter, sans-serif";
+    ctx.fillText("☆  product  ·  design  ·  warm  ☆", 280, 455);
+    ctx.setLineDash([8, 8]);
+    ctx.strokeStyle = "rgba(255,255,255,0.08)";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.roundRect(25, 25, 510, 700, 20);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.strokeStyle = "rgba(255,255,255,0.15)";
+    ctx.lineWidth = 2;
+    var bLen = 20, bPad = 35;
+    ctx.beginPath(); ctx.moveTo(bPad, bPad+bLen); ctx.lineTo(bPad, bPad); ctx.lineTo(bPad+bLen, bPad); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(560-bPad-bLen, bPad); ctx.lineTo(560-bPad, bPad); ctx.lineTo(560-bPad, bPad+bLen); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(bPad, 750-bPad-bLen); ctx.lineTo(bPad, 750-bPad); ctx.lineTo(bPad+bLen, 750-bPad); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(560-bPad-bLen, 750-bPad); ctx.lineTo(560-bPad, 750-bPad); ctx.lineTo(560-bPad, 750-bPad-bLen); ctx.stroke();
+    front.style.backgroundImage = "url(" + cv.toDataURL() + ")";
+    front.style.backgroundSize = "cover";
+    // ---- Back canvas texture ----
+    var bc = document.createElement("canvas");
+    bc.width = 560;
+    bc.height = 750;
+    var bx = bc.getContext("2d");
+    bx.fillStyle = "#1a1a1a";
+    bx.beginPath();
+    bx.moveTo(r2,0); bx.lineTo(560-r2,0);
+    bx.quadraticCurveTo(560,0,560,r2);
+    bx.lineTo(560,750-r2);
+    bx.quadraticCurveTo(560,750,560-r2,750);
+    bx.lineTo(r2,750);
+    bx.quadraticCurveTo(0,750,0,750-r2);
+    bx.lineTo(0,r2);
+    bx.quadraticCurveTo(0,0,r2,0);
+    bx.fill();
+    bx.strokeStyle = "rgba(255,255,255,0.05)";
+    bx.lineWidth = 1;
+    for (var bgi=0; bgi<560; bgi+=30) {
+      bx.beginPath(); bx.moveTo(bgi,0); bx.lineTo(bgi,750); bx.stroke();
+      bx.beginPath(); bx.moveTo(0,bgi); bx.lineTo(560,bgi); bx.stroke();
+    }
+    var backGlow = bx.createRadialGradient(280, 375, 10, 280, 375, 300);
+    backGlow.addColorStop(0, "rgba(255,255,255,0.06)");
+    backGlow.addColorStop(1, "rgba(255,255,255,0)");
+    bx.fillStyle = backGlow;
+    bx.beginPath();
+    bx.arc(280, 375, 300, 0, Math.PI*2);
+    bx.fill();
+    bx.fillStyle = "#ffffff";
+    bx.font = "300 36px Inter, sans-serif";
+    bx.textAlign = "center";
+    bx.textBaseline = "middle";
+    bx.shadowColor = "rgba(255,255,255,0.15)";
+    bx.shadowBlur = 15;
+    bx.fillText("这是背面=w=", 280, 375);
+    bx.shadowBlur = 0;
+    bx.fillStyle = "rgba(255,255,255,0.15)";
+    bx.font = "14px Inter, sans-serif";
+    bx.fillText("☆  flip back  ☆", 280, 430);
+    bx.setLineDash([6, 6]);
+    bx.strokeStyle = "rgba(255,255,255,0.06)";
+    bx.lineWidth = 1.5;
+    bx.beginPath();
+    bx.roundRect(40, 40, 480, 670, 16);
+    bx.stroke();
+    bx.setLineDash([]);
+    back.style.backgroundImage = "url(" + bc.toDataURL() + ")";
+    back.style.backgroundSize = "cover";
+    cardInner.appendChild(front);
+    cardInner.appendChild(back);
+    card.appendChild(cardInner);
+    container.appendChild(card);
+    card._inner = cardInner;
+    window._cardInner = cardInner;
+    // Init
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    cardX = 0;
+    targetX = 0;
+    targetY = h / 2 - cardH / 2 - bandTop;
+    cardY = targetY - 350;
+    // Events
+    container.addEventListener("pointerdown", function(ev) {
+      dragStartX = ev.clientX;
+      dragStartRotY = rotY;
+      isDragging = true;
+      card.style.cursor = "grabbing";
+      ev.preventDefault();
+    });
+    window.addEventListener("pointermove", function(ev) {
+      if (!isDragging) return;
+      var rect = container.getBoundingClientRect();
+      targetX = ev.clientX - rect.left - rect.width / 2;
+      targetY = ev.clientY - rect.top - 40;
+      targetRotY = dragStartRotY + (ev.clientX - dragStartX) * 0.5;
+    });
+    window.addEventListener("pointerup", function() {
+      isDragging = false;
+      card.style.cursor = "grab";
+      var nearest = Math.round(targetRotY / 180) * 180;
+      targetRotY = nearest;
+      targetX = 0;
+      targetY = window.innerHeight / 2 - cardH / 2 - bandTop;
+    });
+    overlay.addEventListener("click", function(ev) {
+      if (ev.target === overlay) hideLanyard();
+    });
+    document.getElementById("lanyardClose").addEventListener("click", hideLanyard);
+    document.addEventListener("keydown", function(ke) {
+      if (ke.key === "Escape") hideLanyard();
+    });
+    animate();
+  }
+  function animate() {
+    requestAnimationFrame(animate);
+    if (!overlay || overlay.style.display === "none") return;
+    // Spring physics
+    var k = 0.06, damp = 0.85;
+    cardVX += (targetX - cardX) * k;
+    cardVY += (targetY - cardY) * k;
+    cardVX *= damp;
+    cardVY *= damp;
+    cardX += cardVX;
+    cardY += cardVY;
+    cardVY += 0.2;
+    // Rotation spring physics
+    rotVY += (targetRotY - rotY) * 0.12;
+    rotVY *= 0.88;
+    rotY += rotVY;
+    // Update card position
+    var w = window.innerWidth;
+    var cxPos = w / 2 + cardX;
+    var cyPos = bandTop + cardY;
+    card.style.left = cxPos + "px";
+    card.style.top = cyPos + "px";
+    card._inner.style.transform = "rotateY(" + rotY + "deg) rotate(" + (cardVX * 0.3) + "deg)";
+    // Update band paths
+    var els = window._bandEls;
+    if (els) {
+      var startX = w / 2;
+      var startY = bandTop;
+      var endX = cxPos;
+      var endY = cyPos + 20;
+      var cp1x = startX + cardX * 0.2;
+      var cp1y = startY + (endY - startY) * 0.6;
+      var cp2x = w / 2 + cardX * 0.6;
+      var cp2y = startY + (endY - startY) * 0.3;
+      var d = "M " + startX + " " + startY + " C " + cp1x + " " + cp1y + ", " + cp2x + " " + cp2y + ", " + endX + " " + endY;
+      els.forEach(function(el) { el.setAttribute("d", d); });
+    }
+  }
+})();
+
+var h=document.getElementById('header');window.addEventListener('scroll',function(){h.classList.toggle('scrolled',window.scrollY>50);});
+var t=document.getElementById('toast');document.querySelectorAll('.footer-contact-item').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();var text=this.textContent.trim();if(navigator.clipboard){navigator.clipboard.writeText(text);}else{var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}t.classList.add('show');clearTimeout(this._toastTimer);this._toastTimer=setTimeout(function(){t.classList.remove('show');},1500);});});
+</script>
+
+
+<script>
+// ===== Image spring-up animation via IntersectionObserver =====
+(function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('spring-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -40px 0px', threshold: 0.1 });
+  document.querySelectorAll('.prep-gallery img').forEach(function(img) { observer.observe(img); });
+})();
+</script>
+
+<script src="lightfall.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
